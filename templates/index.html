@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Início - Portal RPA{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4 mb-4">Automação Inteligente com RPA</h1>
+        <p class="lead mb-4">Transforme processos manuais em automações eficientes e economize tempo e recursos</p>
+        {% if not current_user.is_authenticated %}
+        <a href="{{ url_for('cadastro') }}" class="btn btn-light btn-lg me-2">
+            <i class="bi bi-person-plus"></i> Criar Conta
+        </a>
+        <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">
+            <i class="bi bi-box-arrow-in-right"></i> Entrar
+        </a>
+        {% else %}
+        <a href="{{ url_for('criar_orcamento') }}" class="btn btn-light btn-lg">
+            <i class="bi bi-clipboard-check"></i> Solicitar Orçamento
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card text-center p-4">
+                <i class="bi bi-gear-fill card-icon"></i>
+                <h4>Automação de Processos</h4>
+                <p>Automatize tarefas repetitivas e aumente a produtividade da sua equipe com soluções RPA personalizadas.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center p-4">
+                <i class="bi bi-graph-up card-icon"></i>
+                <h4>Otimização de Workflows</h4>
+                <p>Identifique e otimize processos para reduzir custos operacionais e melhorar a eficiência organizacional.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center p-4">
+                <i class="bi bi-shield-check card-icon"></i>
+                <h4>Integração Segura</h4>
+                <p>Conecte sistemas e aplicações de forma segura e eficiente, mantendo a integridade dos seus dados.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-12 text-center">
+            <h2 class="mb-4">Por que escolher nossos serviços?</h2>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <i class="bi bi-check-circle-fill text-success"></i> 
+                    <strong>Experiência Comprovada</strong> - Soluções testadas e aprovadas por diversas empresas
+                </div>
+                <div class="col-md-6 mb-3">
+                    <i class="bi bi-check-circle-fill text-success"></i> 
+                    <strong>Suporte Dedicado</strong> - Equipe especializada para acompanhar seu projeto
+                </div>
+                <div class="col-md-6 mb-3">
+                    <i class="bi bi-check-circle-fill text-success"></i> 
+                    <strong>Customização Total</strong> - Soluções adaptadas às necessidades da sua empresa
+                </div>
+                <div class="col-md-6 mb-3">
+                    <i class="bi bi-check-circle-fill text-success"></i> 
+                    <strong>ROI Garantido</strong> - Retorno sobre investimento mensurável e rápido
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2 class="mb-4">Solicite seu Orçamento Gratuito</h2>
+            <p class="lead mb-4">Entre em contato conosco e descubra como podemos transformar seus processos</p>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('criar_orcamento') }}" class="btn btn-primary btn-lg">
+                <i class="bi bi-clipboard-check"></i> Criar Orçamento
+            </a>
+            {% else %}
+            <a href="{{ url_for('cadastro') }}" class="btn btn-primary btn-lg">
+                <i class="bi bi-person-plus"></i> Criar Conta Grátis
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+

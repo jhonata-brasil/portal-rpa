@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Portal RPA{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h2><i class="bi bi-speedometer2"></i> Dashboard</h2>
+            <p class="text-muted">Bem-vindo, {{ current_user.name }}!</p>
+        </div>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <a href="{{ url_for('criar_orcamento') }}" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Novo Orçamento
+            </a>
+            {% if current_user.email == 'jhonatanunes2012@gmail.com' %}
+            <a href="{{ url_for('teste_email') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-envelope-check"></i> Testar Email
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="bi bi-list-check"></i> Meus Orçamentos</h5>
+                </div>
+                <div class="card-body">
+                    {% if orcamentos %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Empresa</th>
+                                    <th>Tipo de Serviço</th>
+                                    <th>Data</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for orcamento in orcamentos %}
+                                <tr>
+                                    <td>{{ orcamento.nome_empresa }}</td>
+                                    <td>{{ orcamento.tipo_servico }}</td>
+                                    <td>{{ orcamento.created_at.strftime('%d/%m/%Y') }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ 'success' if orcamento.status == 'aprovado' else 'warning' if orcamento.status == 'pendente' else 'secondary' }}">
+                                            {{ orcamento.status.title() }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5">
+                        <i class="bi bi-inbox" style="font-size: 3rem; color: #ccc;"></i>
+                        <p class="text-muted mt-3">Você ainda não criou nenhum orçamento.</p>
+                        <a href="{{ url_for('criar_orcamento') }}" class="btn btn-primary">Criar Primeiro Orçamento</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

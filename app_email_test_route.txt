@@ -1,0 +1,31 @@
+@app.route('/teste-email')
+@login_required
+def teste_email():
+    """Rota para testar envio de email"""
+    if current_user.email != 'jhonatanunes2012@gmail.com':
+        flash('Apenas o administrador pode testar emails.', 'error')
+        return redirect(url_for('dashboard'))
+    
+    teste_body = """
+    <html>
+    <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+        <h2 style="color: #27ae60;">Teste de Email - Portal RPA</h2>
+        <p>Se você recebeu este email, a configuração está funcionando corretamente!</p>
+        <p><strong>Data/Hora:</strong> {}</p>
+        <p>Atenciosamente,<br>Sistema Portal RPA</p>
+    </body>
+    </html>
+    """.format(datetime.now().strftime('%d/%m/%Y %H:%M:%S'))
+    
+    resultado = send_email(
+        subject='Teste de Email - Portal RPA',
+        body=teste_body,
+        to_email='jhonatanunes2012@gmail.com'
+    )
+    
+    if resultado:
+        flash('Email de teste enviado com sucesso! Verifique sua caixa de entrada.', 'success')
+    else:
+        flash('Erro ao enviar email de teste. Verifique os logs no terminal e a configuração.', 'error')
+    
+    return redirect(url_for('dashboard'))

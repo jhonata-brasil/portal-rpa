@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Contato - Portal RPA{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Entre em Contato</h2>
+                    <p class="text-center text-muted mb-4">
+                        Tem alguma dúvida? Quer saber mais sobre nossos serviços? Entre em contato conosco!
+                    </p>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6 text-center mb-3">
+                            <i class="bi bi-envelope-fill" style="font-size: 2rem; color: var(--secondary-color);"></i>
+                            <h5 class="mt-2">Email</h5>
+                            <p>jhonatanunes2012@gmail.com</p>
+                        </div>
+                        <div class="col-md-6 text-center mb-3">
+                            <i class="bi bi-chat-dots-fill" style="font-size: 2rem; color: var(--secondary-color);"></i>
+                            <h5 class="mt-2">Atendimento</h5>
+                            <p>Segunda a Sexta, 9h às 18h</p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <h4>Ou solicite um orçamento diretamente</h4>
+                        {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('criar_orcamento') }}" class="btn btn-primary btn-lg mt-3">
+                            <i class="bi bi-clipboard-check"></i> Criar Orçamento
+                        </a>
+                        {% else %}
+                        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg mt-3">
+                            <i class="bi bi-google"></i> Entrar para Criar Orçamento
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

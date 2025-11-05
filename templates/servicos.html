@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Serviços - Portal RPA{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-5">Nossos Serviços</h2>
+    
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title"><i class="bi bi-gear-fill text-primary"></i> Automação de Processos RPA</h4>
+                    <p class="card-text">
+                        Automatizamos processos repetitivos e manuais usando tecnologias RPA de ponta. 
+                        Reduza erros humanos e aumente a produtividade da sua equipe.
+                    </p>
+                    <ul>
+                        <li>Automação de tarefas administrativas</li>
+                        <li>Processamento de documentos</li>
+                        <li>Extract, Transform, Load (ETL)</li>
+                        <li>Automação de workflows</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title"><i class="bi bi-robot text-primary"></i> Desenvolvimento de Bots</h4>
+                    <p class="card-text">
+                        Criamos bots inteligentes personalizados para atender às necessidades específicas 
+                        da sua empresa.
+                    </p>
+                    <ul>
+                        <li>Chatbots para atendimento</li>
+                        <li>Bots para automação de sistemas</li>
+                        <li>Bots de monitoramento</li>
+                        <li>Soluções customizadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title"><i class="bi bi-diagram-3 text-primary"></i> Integração de Sistemas</h4>
+                    <p class="card-text">
+                        Conectamos diferentes sistemas e aplicações para criar um fluxo de trabalho 
+                        integrado e eficiente.
+                    </p>
+                    <ul>
+                        <li>Integração via APIs</li>
+                        <li>Sincronização de dados</li>
+                        <li>Migração de dados</li>
+                        <li>Integração ERP/CRM</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title"><i class="bi bi-briefcase text-primary"></i> Consultoria em Automação</h4>
+                    <p class="card-text">
+                        Nossa equipe de especialistas analisa seus processos e identifica oportunidades 
+                        de automação com maior ROI.
+                    </p>
+                    <ul>
+                        <li>Análise de processos</li>
+                        <li>Planejamento de automação</li>
+                        <li>ROI e benefícios esperados</li>
+                        <li>Roadmap de implementação</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title"><i class="bi bi-headset text-primary"></i> Manutenção e Suporte</h4>
+                    <p class="card-text">
+                        Oferecemos suporte contínuo para garantir que suas automações funcionem 
+                        perfeitamente.
+                    </p>
+                    <ul>
+                        <li>Monitoramento 24/7</li>
+                        <li>Correção de erros</li>
+                        <li>Atualizações e melhorias</li>
+                        <li>Suporte técnico dedicado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title"><i class="bi bi-graph-up text-primary"></i> Outros Serviços de Tecnologia</h4>
+                    <p class="card-text">
+                        Também oferecemos serviços adicionais de tecnologia para complementar suas 
+                        necessidades.
+                    </p>
+                    <ul>
+                        <li>Desenvolvimento de software</li>
+                        <li>Análise de dados</li>
+                        <li>Cloud computing</li>
+                        <li>Soluções sob medida</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mt-5">
+        <h3>Pronto para começar?</h3>
+        <p class="lead mb-4">Solicite um orçamento gratuito e descubra como podemos ajudar sua empresa</p>
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('criar_orcamento') }}" class="btn btn-primary btn-lg">
+            <i class="bi bi-clipboard-check"></i> Solicitar Orçamento
+        </a>
+        {% else %}
+        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+            <i class="bi bi-google"></i> Entrar com Google
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

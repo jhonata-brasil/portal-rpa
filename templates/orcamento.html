@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Solicitar Orçamento - Portal RPA{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="bi bi-clipboard-check"></i> Solicitar Orçamento</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{{ url_for('criar_orcamento') }}">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="nome_empresa" class="form-label">Nome da Empresa *</label>
+                                <input type="text" class="form-control" id="nome_empresa" name="nome_empresa" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contato" class="form-label">Nome do Contato *</label>
+                                <input type="text" class="form-control" id="contato" name="contato" value="{{ current_user.name }}" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ current_user.email }}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="telefone" class="form-label">Telefone</label>
+                                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="tipo_servico" class="form-label">Tipo de Serviço *</label>
+                            <select class="form-select" id="tipo_servico" name="tipo_servico" required>
+                                <option value="">Selecione...</option>
+                                <option value="Automação de Processos RPA">Automação de Processos RPA</option>
+                                <option value="Desenvolvimento de Bots">Desenvolvimento de Bots</option>
+                                <option value="Integração de Sistemas">Integração de Sistemas</option>
+                                <option value="Consultoria em Automação">Consultoria em Automação</option>
+                                <option value="Manutenção e Suporte">Manutenção e Suporte</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="descricao" class="form-label">Descrição do Projeto *</label>
+                            <textarea class="form-control" id="descricao" name="descricao" rows="5" 
+                                placeholder="Descreva detalhadamente o que você precisa automatizar, quais processos estão envolvidos, volume de dados, etc." required></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="prazo_desejado" class="form-label">Prazo Desejado</label>
+                            <input type="text" class="form-control" id="prazo_desejado" name="prazo_desejado" 
+                                placeholder="Ex: 30 dias, 2 meses, etc.">
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-send"></i> Enviar Solicitação
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="alert alert-info mt-4">
+                <i class="bi bi-info-circle"></i> 
+                <strong>Importante:</strong> Após o envio, você receberá uma confirmação por email e nossa equipe entrará em contato em breve para discutir os detalhes do seu projeto.
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
